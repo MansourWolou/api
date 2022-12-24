@@ -1,13 +1,14 @@
 package com.example.demo.Content;
 
+import com.example.demo.Content.Storage.StorageService;
 import com.example.demo.user.UserModel;
 import com.example.demo.user.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,9 +17,13 @@ import java.util.Optional;
 public class ContentController {
 
     private final ContentService contentService;
+    private final StorageService storageService;
+    private final UserService userService;
 
-    public ContentController(ContentService contentService) {
+    public ContentController(ContentService contentService, StorageService storageService, UserService userService) {
         this.contentService = contentService;
+        this.storageService = storageService;
+        this.userService = userService;
     }
 
     /**
@@ -46,30 +51,23 @@ public class ContentController {
 
     /**
      * Ajouter un content
-     * @param name
-     * @param surname
      * @return
      */
     @PostMapping("contents/add")
-    public ResponseEntity<ContentModel> add(@RequestParam String name, @RequestParam String surname){
+    public ResponseEntity<ContentModel> add(@RequestParam String type,
+                                            @RequestParam String description,
+                                            @RequestParam Integer userId,
+                                            @RequestParam("file") MultipartFile file) throws IOException{
+        Optional<UserModel> usr = userService.findById(userId);
+        ContentModel cntent = new ContentModel(type,description,"g");
+        usr.get().getContent().add(cntent);
+        UserModel user = usr.get();
+        //userService.save(user);
+        ContentModel content = contentService.save( cntent);
 
-        ContentModel content = contentService.save(new ContentModel());
+        storageService.store(userId,file,content);
         return ResponseEntity.ok(content);
     }
-    //TODO : uploadd de content
-    /**
-     * todo : faire une route pour l'objet content
-     */
-//    @PostMapping("contents/upload")
-//    public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file,
-//                                   RedirectAttributes redirectAttributes) {
-////
-////        storageService.store(file);
-////        redirectAttributes.addFlashAttribute("message",
-////                "You successfully uploaded " + file.getOriginalFilename() + "!");
-////
-//        return ResponseEntity.ok("redirect:/");
-//    }
 
 
     /**

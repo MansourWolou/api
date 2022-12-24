@@ -1,6 +1,7 @@
 package com.example.demo.Content;
 
 import com.example.demo.user.UserModel;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,5 @@ public interface ContentService {
     ContentModel save(ContentModel content);
 
     void deleteById(Integer id);
-
     void delete(ContentModel content);
 }
