@@ -31,7 +31,7 @@ public class ContentModel {
     private String type;
     private String description;
     // NFS
-    private String path = "src/main/java/com/example/demo/Content/FileUploaded";
+    private String path = "/home/mansour/Téléchargements/moodAgain/demo/src/main/java/com/example/demo/Content/FileUploaded";
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "userTableId")
@@ -48,6 +48,11 @@ public class ContentModel {
         this.type = type;
         this.description = description;
         this.path = path;
+    }
+
+    public ContentModel(String type, String description) {
+        this.type = type;
+        this.description = description;
     }
 
     public ContentModel() {

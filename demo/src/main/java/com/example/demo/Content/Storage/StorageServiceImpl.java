@@ -37,7 +37,15 @@ public class StorageServiceImpl implements StorageService {
                 + "/" + UUID.randomUUID()
                 + "-" + file.getOriginalFilename();
         //Path root = Paths.get(path);
+        //System.out.println(path);
+        //File storedImage = new File(path);
+        //File storedImage = new File("/home/mansour/Téléchargements/moodAgain/demo/src/main/java/com/example/demo/Content/FileUploaded/1");
+        //storedImage.createNewFile();
+        //file.transferTo(storedImage);
         File storedImage = new File(path);
+        if (!storedImage.getParentFile().exists()) {
+            storedImage.getParentFile().mkdir();
+        }
         storedImage.createNewFile();
         file.transferTo(storedImage);
     }

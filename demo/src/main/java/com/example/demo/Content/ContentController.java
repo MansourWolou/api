@@ -59,13 +59,13 @@ public class ContentController {
                                             @RequestParam Integer userId,
                                             @RequestParam("file") MultipartFile file) throws IOException{
         Optional<UserModel> usr = userService.findById(userId);
-        ContentModel cntent = new ContentModel(type,description,"g");
-        usr.get().getContent().add(cntent);
+        ContentModel cntent = new ContentModel(type,description);
+        usr.get().getContent().add(cntent);// Rajoute la clé étrangère
         UserModel user = usr.get();
         //userService.save(user);
         ContentModel content = contentService.save( cntent);
 
-        storageService.store(userId,file,content);
+        storageService.store(userId,file,cntent);
         return ResponseEntity.ok(content);
     }
 
