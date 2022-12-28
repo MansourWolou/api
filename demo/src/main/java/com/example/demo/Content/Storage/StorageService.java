@@ -7,5 +7,10 @@ import java.io.IOException;
 
 public interface StorageService {
 
-    void store(Integer userId, MultipartFile file, ContentModel content) throws  IOException;
+
+    void store(Integer userId,
+               MultipartFile file,
+               String nfsPath) throws  IOException;
+
+    public byte[] downloadContent(String description) throws IOException;
 }

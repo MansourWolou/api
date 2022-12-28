@@ -3,6 +3,8 @@ package com.example.demo.Content;
 import com.example.demo.Content.Storage.StorageService;
 import com.example.demo.user.UserModel;
 import com.example.demo.user.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/api")
@@ -50,25 +53,42 @@ public class ContentController {
     }
 
     /**
-     * Ajouter un content
+     *
+     * @param type
+     * @param description
+     * @param userId
+     * @param file
      * @return
+     * @throws IOException
+     * TODO: Gérer les exception si il ya
+     * TODO: le path enregistrer dans la bdd n'es pas bien , trouver mieux
      */
     @PostMapping("contents/add")
     public ResponseEntity<ContentModel> add(@RequestParam String type,
                                             @RequestParam String description,
                                             @RequestParam Integer userId,
-                                            @RequestParam("file") MultipartFile file) throws IOException{
+                                            @RequestParam("file") MultipartFile file) throws IOException
+    {
         Optional<UserModel> usr = userService.findById(userId);
         ContentModel cntent = new ContentModel(type,description);
+        String path = cntent.getPath()
+                + "/" + userId
+                + "/" + UUID.randomUUID()
+                + "-" + file.getOriginalFilename();
+        cntent.setPath(path);
         usr.get().getContent().add(cntent);// Rajoute la clé étrangère
-        UserModel user = usr.get();
-        //userService.save(user);
         ContentModel content = contentService.save( cntent);
-
-        storageService.store(userId,file,cntent);
+        storageService.store(userId,file,path);
         return ResponseEntity.ok(content);
     }
 
+    @GetMapping("content/{description}")
+    public ResponseEntity<?> downloadContent(@PathVariable String description) throws IOException {
+        byte[] imageData=storageService.downloadContent(description);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.valueOf("image/png"))
+                .body(imageData);
+    }
 
     /**
      * Supprimer un content précis
