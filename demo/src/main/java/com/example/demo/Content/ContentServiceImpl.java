@@ -27,6 +27,11 @@ public class ContentServiceImpl implements ContentService{
     }
 
     @Override
+    public Optional<ContentModel> findByDescription(String description){
+        return contentRepository.findByDescription(description);
+    }
+
+    @Override
     public ContentModel save(ContentModel content) {
         return contentRepository.save(content);
     }
