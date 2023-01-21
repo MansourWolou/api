@@ -24,8 +24,9 @@ spring:
       file-size-threshold: 2MB
   datasource:
     password: Access/fedora/6
-    username: mansour
-    url: jdbc:postgresql://localhost:5432/moood
+    username: postgres
+    url: jdbc:postgresql://db:5432/postgres
+    driver-class-name: org.postgresql.Driver
 application:
   bucket:
     name: moood-app

@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  database:
+    image: postgres
+    container_name: db
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: Access/fedora/6
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+    volumes:
+      - psql:/var/lib/postgres/psql
+    networks:
+      - net
+  app_service:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    networks:
+      - net
+volumes:
+  psql:
+networks:
+  net:
