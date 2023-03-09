@@ -23,9 +23,9 @@ spring:
       max-request-size: 10MB
       file-size-threshold: 2MB
   datasource:
-    password: Access/fedora/6
-    username: postgres
-    url: jdbc:postgresql://db:5432/postgres
+    password: Access/db/2
+    username: app_user
+    url: jdbc:postgresql://db:5432/app_db
     driver-class-name: org.postgresql.Driver
 application:
   bucket:

@@ -4,13 +4,11 @@ services:
   database:
     image: postgres
     container_name: db
-    ports:
-      - "5433:5432"
     restart: unless-stopped
     environment:
-      POSTGRES_PASSWORD: Access/fedora/6
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
+      POSTGRES_DB: app_db
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: Access/db/2
     volumes:
       - psql:/var/lib/postgres/psql
     networks:
