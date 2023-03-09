@@ -1,6 +1,5 @@
-package com.example.demo.Content;
+package com.example.demo.content;
 
-import com.example.demo.user.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

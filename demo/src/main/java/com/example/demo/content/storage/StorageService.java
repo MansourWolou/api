@@ -1,9 +1,7 @@
-package com.example.demo.Content.Storage;
+package com.example.demo.content.storage;
 
-import com.example.demo.Content.ContentModel;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 
 public interface StorageService {

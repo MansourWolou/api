@@ -1,5 +1,5 @@
 package com.example.demo.user;
-import com.example.demo.Content.ContentModel;
+import com.example.demo.content.ContentModel;
 import jakarta.persistence.*;
 import lombok.*;
 

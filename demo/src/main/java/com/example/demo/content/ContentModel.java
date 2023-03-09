@@ -1,6 +1,5 @@
-package com.example.demo.Content;
+package com.example.demo.content;
 
-import com.example.demo.user.UserModel;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

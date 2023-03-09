@@ -1,7 +1,4 @@
-package com.example.demo.Content;
-
-import com.example.demo.user.UserModel;
-import org.springframework.web.bind.annotation.RequestParam;
+package com.example.demo.content;
 
 import java.util.List;
 import java.util.Optional;

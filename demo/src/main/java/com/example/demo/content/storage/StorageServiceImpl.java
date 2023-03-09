@@ -1,16 +1,12 @@
-package com.example.demo.Content.Storage;
+package com.example.demo.content.storage;
 
-import com.amazonaws.AmazonServiceException;
-import com.amazonaws.HttpMethod;
-import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
-import com.example.demo.Content.ContentModel;
-import com.example.demo.Content.ContentService;
+import com.example.demo.content.ContentModel;
+import com.example.demo.content.ContentService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,13 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
-import java.time.Instant;
 import java.util.Optional;
-
-import lombok.extern.slf4j.Slf4j;
-
 
 
 @Service

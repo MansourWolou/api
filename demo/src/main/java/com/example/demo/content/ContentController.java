@@ -1,6 +1,6 @@
-package com.example.demo.Content;
+package com.example.demo.content;
 
-import com.example.demo.Content.Storage.StorageService;
+import com.example.demo.content.storage.StorageService;
 import com.example.demo.user.UserModel;
 import com.example.demo.user.UserService;
 import org.springframework.core.io.ByteArrayResource;

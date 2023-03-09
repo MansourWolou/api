@@ -1,7 +1,5 @@
-package com.example.demo.Content;
+package com.example.demo.content;
 
-import com.example.demo.user.UserModel;
-import com.example.demo.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
