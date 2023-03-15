@@ -25,7 +25,8 @@ spring:
   datasource:
     password: Access/db/2
     username: app_user
-    url: jdbc:postgresql://db:5432/app_db
+#    url: jdbc:postgresql://db:5432/app_db
+    url: jdbc:postgresql://localhost:5001/app_db
     driver-class-name: org.postgresql.Driver
 application:
   bucket:

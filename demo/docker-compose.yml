@@ -5,6 +5,8 @@ services:
     image: postgres
     container_name: db
     restart: unless-stopped
+    ports:
+      - "5432:54232"
     environment:
       POSTGRES_DB: app_db
       POSTGRES_USER: app_user

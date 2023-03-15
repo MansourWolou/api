@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class ContentController {
 
     private final ContentService contentService;
